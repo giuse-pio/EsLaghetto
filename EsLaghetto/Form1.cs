@@ -9,7 +9,7 @@ namespace EsLaghetto
         int[,] grid = new int[10, 40];
         int cellSize = 20;
 
-        bool modalitaDisegno = true; 
+        bool modalitaDisegno = true;
         bool mousePremuto = false;
 
         Button btnCambia;
@@ -63,7 +63,7 @@ namespace EsLaghetto
             mousePremuto = false;
         }
 
-    
+
 
         public void Disegna(MouseEventArgs e)
         {
@@ -88,9 +88,17 @@ namespace EsLaghetto
             {
                 // riempimento tipo secchiello
                 int colorePartenza = grid[row, col];
-                if (colorePartenza != 2)
+
+                if (e.Button == MouseButtons.Right)
                 {
-                    FloodFill(row, col, colorePartenza);
+                    grid[row, col] = 0;
+                }
+                else if (e.Button == MouseButtons.Left)
+                {
+                    if (colorePartenza != 2)
+                    {
+                        FloodFill(row, col, colorePartenza);
+                    }
                 }
             }
 
